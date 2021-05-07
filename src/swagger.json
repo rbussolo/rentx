@@ -143,6 +143,52 @@
                     }
                 }
             }
+        },
+        "/users": {
+          "post": {
+            "tags": ["User"],
+            "summary": "Create a user",
+            "description": "Create a new user",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "Created"
+              },
+              "400": {
+                "description": "User already exists"
+              }
+            }
+          },
+          "get": {
+            "tags": [
+              "User"
+            ],
+            "summary": "List all users",
+            "description": "List all users",
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/User"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
     },
     "definitions":{
@@ -156,6 +202,26 @@
                     "type": "string"
                 }
             }
+        },
+        "User":{
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "driver_license": {
+              "type": "string"
+            }
+          }
         }
     }
 }
