@@ -1,3 +1,4 @@
+import { hash } from "bcryptjs";
 import { getRepository, Repository } from "typeorm";
 
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
@@ -29,9 +30,11 @@ class UsersRepository implements IUsersRepository {
     email,
     driver_license,
   }: ICreateUserDTO): Promise<void> {
+    const passwordHash = await hash(password, 8);
+
     const user = this.repository.create({
       name,
-      password,
+      password: passwordHash,
       email,
       driver_license,
     });
