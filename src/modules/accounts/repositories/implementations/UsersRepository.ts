@@ -31,18 +31,22 @@ class UsersRepository implements IUsersRepository {
   }
 
   async create({
+    id,
     name,
     password,
     email,
     driver_license,
+    avatar,
   }: ICreateUserDTO): Promise<void> {
     const passwordHash = await hash(password, 8);
 
     const user = this.repository.create({
+      id,
       name,
       password: passwordHash,
       email,
       driver_license,
+      avatar,
     });
 
     await this.repository.save(user);
