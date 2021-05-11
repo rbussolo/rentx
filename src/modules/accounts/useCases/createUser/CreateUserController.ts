@@ -8,14 +8,10 @@ class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const data: ICreateUserDTO = request.body;
 
-    try {
-      const createUserUseCase = container.resolve(CreateUserUseCase);
-      await createUserUseCase.execute(data);
+    const createUserUseCase = container.resolve(CreateUserUseCase);
+    await createUserUseCase.execute(data);
 
-      return response.status(201).send();
-    } catch (err) {
-      return response.status(400).json({ message: err.message });
-    }
+    return response.status(201).send();
   }
 }
 

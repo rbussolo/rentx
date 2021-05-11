@@ -189,6 +189,50 @@
               }
             }
           }
+        },
+        "/session":{
+            "post": {
+                "tags": ["Authentication"],
+                "summary": "Create a new session",
+                "description": "Create a new session",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "201": {
+                    "description": "Session created",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                  },
+                  "400": {
+                    "description": "E-mail or password incorret"
+                  }
+                }
+            }
         }
     },
     "definitions":{
