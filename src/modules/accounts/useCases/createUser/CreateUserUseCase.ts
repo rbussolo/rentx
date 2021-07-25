@@ -1,10 +1,10 @@
 import { injectable, inject } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "@errors/AppError";
 import {
   ICreateUserDTO,
   IUsersRepository,
-} from "../../repositories/IUsersRepository";
+} from "@modules/accounts/repositories/IUsersRepository";
 
 @injectable()
 class CreateUserUseCase {
@@ -22,7 +22,7 @@ class CreateUserUseCase {
       throw new AppError("User already exists!");
     }
 
-    this.usersRepository.create(data);
+    await this.usersRepository.create(data);
   }
 }
 
