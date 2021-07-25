@@ -22,10 +22,8 @@ class UserRepositoryInMemory implements IUsersRepository {
       email,
       driver_license,
     });
-    console.log(user);
-    this.users.push(user);
 
-    console.log(this.users);
+    this.users.push(user);
   }
 
   async findByEmail(email: string): Promise<User> {
